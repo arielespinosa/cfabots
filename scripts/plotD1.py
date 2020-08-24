@@ -92,7 +92,7 @@ def steps(llcrnrlon, llcrnrlat, m, nsteps, nowstep):
 
 
 def drawmap(m,curtimestring,dom,a,DATA,TITLESTRING,PROD,UNITS, llcrnrlon, llcrnrlat, ftimes):
-
+    shapesdir="/opt/sispi/Operative_Scripts/src_wrf/shp/Shapes_RSociales"
     F = plt.gcf()  # Gets the current figure
 
     m.drawmeridians(range(0, 360, 3),labels=[1,0,0,1],fontsize=8, linewidth=0)
@@ -101,8 +101,8 @@ def drawmap(m,curtimestring,dom,a,DATA,TITLESTRING,PROD,UNITS, llcrnrlon, llcrnr
 #    m.drawrivers(color='#0000ff', linewidth=0.15)
 
 #    m.readshapefile('/home/adrian/Desktop/RogerData/shp/waterways', 'river', color='#0000ff', linewidth=0.15)
-    m.readshapefile('/home/adrian/Desktop/RogerData/shp/Provincias/provi', 'roads', color='k', linewidth=0.9)
-    m.readshapefile('/home/adrian/Desktop/RogerData/shp/Municipios/muni', 'municipios', color='grey', linewidth=0.25)
+    m.readshapefile(shapesdir+'/provi', 'roads', color='k', linewidth=0.9)
+    m.readshapefile(shapesdir+'/muni', 'municipios', color='grey', linewidth=0.25)
 
     m.drawstates(color='gray', linewidth=0.25)
     m.drawcoastlines(color='k', linewidth=0.9)
