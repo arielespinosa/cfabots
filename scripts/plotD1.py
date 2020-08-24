@@ -1351,47 +1351,52 @@ def extrema(mat,mode,window):
     return np.nonzero(mat == mn), np.nonzero(mat == mx)
 
 def main(PROCESS_LIMIT):
-
-    # Set the default domain to be d02
-    dom = 'd01'
-    var = 'all'
-    export_flag = 0
-    filename = '../wrfout_' + dom
+    dominios = ['d01','d02','d03']
+    search_dirs=["/opt/sispi/OPUTPUTS_1W/D1/WRF/wrfout_","/opt/sispi/OPUTPUTS_1W/D1/WRF/wrfout_","/opt/sispi/OPUTPUTS_1W/D3/WRF/wrfout_"]
     
-    restart_time = 0
+    for d,sdir in zip(dominios,search_dirs):
     
-    # Set up a command-line argument structure to allow
-    # for command-line changes of variables.
-    # f --> the name of the domain we want to use
-    (opts,args)=getopt.getopt(sys.argv[1:],'f:v:r:e')
-    for o,a in opts:
-        if o=="-f":
-            filename = a
-        if o=="-v":
-            var = str(a)
-        if o=="-e":
-            export_flag = 1    
-        if o=="-r":
-            restart_time = int(a)
-    
-    # Skip is the length between outputs
-    skip =0.5 
-    
-    # Directory to move images to (if requested)
-    outdir = './images'
-    
-    lista = glob.glob("wrfout_d01*:00")
-    lista.sort()
-    
-    # paralelizar aqui
-    for a in range(len(lista)):
         
-#        process=multiprocessing.Process(target=dataproc,args=(lista,a,outdir,skip,restart_time,dom,var,export_flag,filename))
-#        while(len(multiprocessing.active_children()) == PROCESS_LIMIT):
-#            time.sleep(1)
-#        process.start()
+        # Set the default domain to be d02
+        dom = d
+        var = 'all'
+        export_flag = 0
+        filename = '../wrfout_' + dom
         
-        dataproc(lista,a,outdir,skip,restart_time,dom,var,export_flag,filename)
+        restart_time = 0
+        
+        # Set up a command-line argument structure to allow
+        # for command-line changes of variables.
+        # f --> the name of the domain we want to use
+        (opts,args)=getopt.getopt(sys.argv[1:],'f:v:r:e')
+        for o,a in opts:
+            if o=="-f":
+                filename = a
+            if o=="-v":
+                var = str(a)
+            if o=="-e":
+                export_flag = 1    
+            if o=="-r":
+                restart_time = int(a)
+        
+        # Skip is the length between outputs
+        skip =0.5 
+        
+        # Directory to move images to (if requested)
+        outdir = './images'
+        
+        lista = glob.glob(sdir+dom+"*:00")
+        lista.sort()
+        
+        # paralelizar aqui
+        for a in range(len(lista)):
+            
+    #        process=multiprocessing.Process(target=dataproc,args=(lista,a,outdir,skip,restart_time,dom,var,export_flag,filename))
+    #        while(len(multiprocessing.active_children()) == PROCESS_LIMIT):
+    #            time.sleep(1)
+    #        process.start()
+            
+            dataproc(lista,a,outdir,skip,restart_time,dom,var,export_flag,filename)
 
 if __name__ == '__main__':
     main(PROCESS_LIMIT)
