@@ -1352,7 +1352,7 @@ def extrema(mat,mode,window):
 
 def main(PROCESS_LIMIT):
     dominios = ['d01','d02','d03']
-    search_dirs=["/opt/sispi/OPUTPUTS_1W/D1/WRF/wrfout_","/opt/sispi/OPUTPUTS_1W/D1/WRF/wrfout_","/opt/sispi/OPUTPUTS_1W/D3/WRF/wrfout_"]
+    search_dirs=["/opt/sispi/OUTPUTS_1W/D1/WRF/wrfout_","/opt/sispi/OUTPUTS_1W/D1/WRF/wrfout_","/opt/sispi/OUTPUTS_1W/D3/WRF/wrfout_"]
     
     for d,sdir in zip(dominios,search_dirs):
     
@@ -1391,12 +1391,12 @@ def main(PROCESS_LIMIT):
         # paralelizar aqui
         for a in range(len(lista)):
             
-    #        process=multiprocessing.Process(target=dataproc,args=(lista,a,outdir,skip,restart_time,dom,var,export_flag,filename))
-    #        while(len(multiprocessing.active_children()) == PROCESS_LIMIT):
-    #            time.sleep(1)
-    #        process.start()
+           process=multiprocessing.Process(target=dataproc,args=(lista,a,outdir,skip,restart_time,dom,var,export_flag,filename))
+           while(len(multiprocessing.active_children()) == PROCESS_LIMIT):
+               time.sleep(1)
+           process.start()
             
-            dataproc(lista,a,outdir,skip,restart_time,dom,var,export_flag,filename)
+            # dataproc(lista,a,outdir,skip,restart_time,dom,var,export_flag,filename)
 
 if __name__ == '__main__':
     main(PROCESS_LIMIT)
