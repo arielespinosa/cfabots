@@ -1360,7 +1360,7 @@ def main(PROCESS_LIMIT):
         # Set the default domain to be d02
         dom = d
         var = 'all'
-        export_flag = 0
+        export_flag = 1
         filename = '../wrfout_' + dom
         
         restart_time = 0
@@ -1383,7 +1383,7 @@ def main(PROCESS_LIMIT):
         skip =0.5 
         
         # Directory to move images to (if requested)
-        outdir = './images'
+        outdir = '../images'
         
         lista = glob.glob(sdir+dom+"*:00")
         lista.sort()
