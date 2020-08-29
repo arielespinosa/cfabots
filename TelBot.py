@@ -8,14 +8,16 @@ import time
 class TelBot(telepot.Bot):
     def __init__(self,token):
                     
-        # configfile=os.path.expanduser('~/.botconfig')
-        # config = json.loads(open(configfile).read())
+        configfile=os.path.expanduser('~/.botconfig')
+        try:
+            config = json.loads(open(configfile).read())
 
-        # if config['proxy']['active'] == 'yes':
-        #     telepot.api.set_proxy(config['proxy']['url'],(config['proxy']['user'],config['proxy']['pass']))
- 
+            if config['proxy']['active'] == 'yes':
+                telepot.api.set_proxy(config['proxy']['url'],(config['proxy']['user'],config['proxy']['pass']))
+        except:
+            print('Sin Configuración de Proxy')
        
-       telepot.Bot.__init__(self,token)
+        telepot.Bot.__init__(self,token)
         # self.bot=telepot.Bot(token)
         # MessageLoop(self.bot,self.handle1)
         
