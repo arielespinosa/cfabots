@@ -24,6 +24,7 @@ def publicar():
     curoutput = time.strftime('%Y%m%d') + currcycle
 
     if not exists(join(outputdir, curoutput, "wrfout_" + curoutput)):
+        print("La última corrida no está lista")
         sys.exit()
 
     #  RAIN
@@ -32,6 +33,7 @@ def publicar():
     count = 24                                                     
     
     if len(glob(lluviafiles)) != count:                                  # espera la cantidad fijada de archivos
+        print("Los últimos gráficos no están listos")
         sys.exit()
 
     vidfile = pngs2mp4(lluviafiles, imagesize='480x320')
