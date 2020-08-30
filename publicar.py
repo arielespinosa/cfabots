@@ -23,7 +23,7 @@ def publicar():
 
     bot = TelBot("1314850663:AAFuBzMDs5niJiUXHvH6ZaWI9rXHaz7GX8A")
     # channel_id = 572031301
-    channel_id = 572031301
+    channel_id = -1001251422684
     cycles = ['00', '06', '12', '18']
 
     nowlcl = time.localtime()
