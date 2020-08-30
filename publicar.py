@@ -13,7 +13,7 @@ def check_sended(corrida, log='msgbox.log'):
     with open(log, 'r') as f:
         msgs = f.readlines()
         if len(msgs) > 0:
-            last_msg = f.readlines()[-1]
+            last_msg = msgs[-1].strip('\n')
             if last_msg == corrida:
                 return True
     return False
