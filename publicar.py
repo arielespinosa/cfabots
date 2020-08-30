@@ -22,6 +22,7 @@ def check_sended(corrida, log='msgbox.log'):
 def publicar():
 
     bot = TelBot("1314850663:AAFuBzMDs5niJiUXHvH6ZaWI9rXHaz7GX8A")
+    # channel_id = 572031301
     channel_id = 572031301
     cycles = ['00', '06', '12', '18']
 
@@ -51,12 +52,14 @@ def publicar():
         print('Salidas ya enviadas anteriormente')
         return 1
 
-    caption = """Pronóstico Numérico de Lluvia en 24h con inicialización {} {}00 UTC""".format(time.strftime('%Y%m%d',nowlcl),currcycle)
+    caption = """Pronóstico Numérico de Lluvia en 24h con inicialización {} {}00 UTC""".format(
+        time.strftime('%Y%m%d', nowlcl), currcycle)
     vidfile = pngs2mp4(lluviafiles, imagesize='480x320')
     response = bot.sendVideo(channel_id,
                              video=open(vidfile, 'rb'),
                              width=480,
-                             height=320,caption=caption)
+                             height=320,
+                             caption=caption)
     print(response)
     open('msgbox.log', 'a').write(curoutput + '\n')
 
