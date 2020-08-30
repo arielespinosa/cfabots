@@ -9,11 +9,11 @@ from os.path import join, exists
 from scripts.imgconvert import pngs2mp4
 
 
-def check_sended(corrida,log='msgbox.log'):
-    with open(log,'r') as f:
-        msgs=f.readlines()
-        if len(msgs) >0:
-            last_msg= f.readlines()[-1]
+def check_sended(corrida, log='msgbox.log'):
+    with open(log, 'r') as f:
+        msgs = f.readlines()
+        if len(msgs) > 0:
+            last_msg = f.readlines()[-1]
             if last_msg == corrida:
                 return True
     return False
@@ -47,15 +47,17 @@ def publicar():
         print("Los últimos gráficos no están listos")
         return 1
 
-    vidfile = pngs2mp4(lluviafiles, imagesize='480x320')
-    
     if check_sended(curoutput):
         print('Salidas ya enviadas anteriormente')
-        return 1 
-    
-    response = bot.sendVideo(channel_id, video=open(vidfile, 'rb'), width=480, height=320)
+        return 1
+
+    vidfile = pngs2mp4(lluviafiles, imagesize='480x320')
+    response = bot.sendVideo(channel_id,
+                             video=open(vidfile, 'rb'),
+                             width=480,
+                             height=320)
     print(response)
-    open('msgbox.log','a').write(curoutput+'\n')
+    open('msgbox.log', 'a').write(curoutput + '\n')
 
 
 if __name__ == '__main__':
