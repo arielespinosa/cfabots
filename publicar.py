@@ -11,9 +11,11 @@ from scripts.imgconvert import pngs2mp4
 
 def check_sended(corrida,log='msgbox.log'):
     with open(log,'r') as f:
-        last_msg= f.readlines()[-1]
-        if last_msg == corrida:
-            return True
+        msgs=f.readlines()
+        if len(msgs) >0:
+            last_msg= f.readlines()[-1]
+            if last_msg == corrida:
+                return True
     return False
 
 
