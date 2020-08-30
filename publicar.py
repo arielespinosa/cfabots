@@ -55,7 +55,7 @@ def publicar():
     
     response = bot.sendVideo(channel_id, video=open(vidfile, 'rb'), width=480, height=320)
     print(response)
-    # open('msgbox.log','a').write(curoutput+'\n')
+    open('msgbox.log','a').write(curoutput+'\n')
 
 
 if __name__ == '__main__':
