@@ -51,12 +51,13 @@ def publicar():
         print('Salidas ya enviadas anteriormente')
         return 1 
     
-    bot.sendVideo(channel_id, video=open(vidfile, 'rb'), width=480, height=320)
-    open('msgbox.log','a').write(curoutput+'\n')
+    response = bot.sendVideo(channel_id, video=open(vidfile, 'rb'), width=480, height=320)
+    print(response)
+    # open('msgbox.log','a').write(curoutput+'\n')
 
 
 if __name__ == '__main__':
-    # publicar()
-    vidfile = '/home/miguel/Projects/cfabots/images/wrfout_2020082806/SFC/RAIN/wrfout_2020082806_d3_rain_sfc_.mp4'
-    bot = TelBot("1314850663:AAFuBzMDs5niJiUXHvH6ZaWI9rXHaz7GX8A")
-    bot.sendVideo(572031301, video=open(vidfile, 'rb'), width=480, height=320)
+    publicar()
+    #vidfile = '/home/miguel/Projects/cfabots/images/wrfout_2020082806/SFC/RAIN/wrfout_2020082806_d3_rain_sfc_.mp4'
+    #bot = TelBot("1314850663:AAFuBzMDs5niJiUXHvH6ZaWI9rXHaz7GX8A")
+    #bot.sendVideo(572031301, video=open(vidfile, 'rb'), width=480, height=320)
