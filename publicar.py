@@ -53,7 +53,7 @@ def publicar():
         return 1
 
     caption = """Pronóstico Numérico de Lluvia en 24h con inicialización {} {}00 UTC""".format(
-        time.strftime('%Y%m%d', nowlcl), currcycle)
+        time.strftime('%Y%m%d', nowgmt), currcycle)
     vidfile = pngs2mp4(lluviafiles, imagesize='480x320')
     response = bot.sendVideo(channel_id,
                              video=open(vidfile, 'rb'),
